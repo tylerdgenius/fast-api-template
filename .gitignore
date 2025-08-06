@@ -1,0 +1,71 @@
+# Bytecode and cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+.env/
+.venv/
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Environment variable files
+.env
+.env.*
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+*.egg
+pip-wheel-metadata/
+*.whl
+
+# Installer artifacts
+*.log
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage
+.coverage
+.tox/
+.nox/
+.pytest_cache/
+.cache/
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+htmlcov/
+.hypothesis/
+
+# Jupyter Notebooks
+.ipynb_checkpoints/
+
+# Tools
+.mypy_cache/
+.pytype/
+.pyre/
+.dmypy.json
+
+# Project settings
+.ropeproject/
+.spyderproject/
+.vscode/
+
+# macOS
+.DS_Store
+
+# Compiled Cython files
+cython_debug/
+*.so
+
+# PyInstaller
+*.spec
+
+# Others
+*.sqlite3
+*.db
