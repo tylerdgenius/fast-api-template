@@ -1,4 +1,4 @@
-from api import Api
+from api.main import Api
 
 if __name__ == '__main__':
     api = Api()
