@@ -1,3 +1,5 @@
+from api import Api
 
-
-# if __name__ == '__main__':
+if __name__ == '__main__':
+    api = Api()
+    api.serve_app()
