@@ -15,5 +15,5 @@ class Api:
         print("Initializing API...")
 
     def serve_app(self):
-        run(self.app, host=self.host, port=int(self.port), log_level=self.log_level)
         print(f"Serving app on {self.host}:{self.port} with log level {self.log_level}")
+        run(self.app, host=self.host, port=int(self.port), log_level=self.log_level)
