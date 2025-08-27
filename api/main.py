@@ -1,19 +1,35 @@
+# app/server.py
 from fastapi import FastAPI
-from uvicorn import run
 from config.env import Environment
+from config.deps import db
 
-class Api:
-    def __init__(self):
-        env = Environment()
-        self.host = env.get_env("HOST")
-        self.port = env.get_env("PORT")
-        self.log_level = env.get_env("LOG_LEVEL")
+env = Environment()
 
-        self.app = FastAPI(title='FastAPI Template', 
-                           description='A template for FastAPI applications',
-                           version='1.0.0')
-        print("Initializing API...")
+def create_app() -> FastAPI:
+    app = FastAPI(
+        title="FastAPI Template",
+        description="A template for FastAPI applications",
+        version="1.0.0",
+    )
 
-    def serve_app(self):
-        print(f"Serving app on {self.host}:{self.port} with log level {self.log_level}")
-        run(self.app, host=self.host, port=int(self.port), log_level=self.log_level)
+    # --- middleware / CORS / routers go here ---
+    # from .routers import users
+    # app.include_router(users.router, prefix="/api")
+
+    @app.get("/health", tags=["health"])
+    def health():
+        return {"ok": True}
+
+    @app.on_event("startup")
+    def on_startup():
+        if not db.ping():
+            raise RuntimeError("PostgreSQL not reachable")
+        print("App starting up…")
+
+    @app.on_event("shutdown")
+    def on_shutdown():
+        print("App shutting down…")
+
+    return app
+
+app = create_app()  # uvicorn entrypoint uses this
